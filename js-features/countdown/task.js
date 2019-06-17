@@ -7,6 +7,7 @@ let start = function() {
         } 
     } else {
         alert('Вы победили в конкурсе!');
+        timer.textContent = 59;
     }
 }
 

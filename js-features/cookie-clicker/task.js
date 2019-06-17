@@ -1,32 +1,26 @@
 const image = document.getElementById('cookie');
 let counter = document.getElementById('clicker__counter');
-let click = 0;
 let i = 0;
 
 function plus() {
     image.width+=10;
     image.height+=10;
     i++;
-    click++;
-    counter.innerHTML = click;
+    counter.innerHTML = i;
 }
 
 function minus() {
     image.width-=10;
     image.height-=10;
-    i--;
-    click++;
-    counter.innerHTML = click;
+    i++;
+    counter.innerHTML = i;
 }
 
 function size() {
-    switch(i) {
-        case 0:
-            plus();
-            break;
-        case 1:
-            minus();
-            break;
+    if (i % 2 == 0) {
+        plus();
+    } else {
+        minus();
     }
 }
 
