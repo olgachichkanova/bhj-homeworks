@@ -17,6 +17,18 @@ class Game {
   }
 
   registerEvents() {
+    document.addEventListener('keydown', function (event) {
+      this.currentSymbol = document.querySelector('.symbol_current').textContent;
+      let symbol = String.fromCharCode(event.keyCode);
+      if (this.currentSymbol == symbol.toLowerCase()) {
+        return true;
+      }
+      if (this.currentSymbol !== symbol.toLowerCase()) {
+        this.fail();
+        } else {
+          this.success();
+        };
+    });
     /*
       TODO:
       Написать обработчик события, который откликается
@@ -27,7 +39,7 @@ class Game {
   }
 
   success() {
-    this.currentSymbol.classList.add('symbol_correct');
+    this.currentSymbol.classList.add('span.symbol.symbol_correct');
     this.currentSymbol = this.currentSymbol.nextElementSibling;
     if (this.currentSymbol !== null) {
       return;
