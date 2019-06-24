@@ -20,9 +20,6 @@ class Game {
     document.addEventListener('keydown', function (event) {
       this.currentSymbol = document.querySelector('.symbol_current').textContent;
       let symbol = String.fromCharCode(event.keyCode);
-      if (this.currentSymbol == symbol.toLowerCase()) {
-        return true;
-      }
       if (this.currentSymbol !== symbol.toLowerCase()) {
         this.fail();
         } else {
