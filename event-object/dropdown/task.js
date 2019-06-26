@@ -8,10 +8,11 @@ list.addEventListener('click', function() {
         for (let i = 0; i < dropdownItems.length; i++) {
             dropdownItems[i].addEventListener('click', function(item) {
                 item.preventDefault();
+                dropdown.classList.remove('dropdown__list_active');
                 list.textContent = this.textContent;
                 return false;
-            }, false);   
+            });   
         }
     };
-}, false);
+});
     

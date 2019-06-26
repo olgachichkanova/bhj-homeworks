@@ -17,15 +17,6 @@ class Game {
   }
 
   registerEvents() {
-    document.addEventListener('keydown', function (event) {
-      this.currentSymbol = document.querySelector('.symbol_current').textContent;
-      let symbol = String.fromCharCode(event.keyCode);
-      if (this.currentSymbol !== symbol.toLowerCase()) {
-        this.fail();
-        } else {
-          this.success();
-        };
-    });
     /*
       TODO:
       Написать обработчик события, который откликается
@@ -33,6 +24,14 @@ class Game {
       В случае правильного ввода слова вызываем this.success()
       При неправильном вводе символа - this.fail();
      */
+    document.addEventListener('keydown',  (event) => {
+      let symbol = String.fromCharCode(event.keyCode);
+      if (this.currentSymbol.textContent !== symbol.toLowerCase()) {
+        this.fail();
+        } else {
+          this.success();
+        };
+    });
   }
 
   success() {
