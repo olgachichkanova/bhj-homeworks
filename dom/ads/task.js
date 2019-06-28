@@ -6,10 +6,11 @@ setInterval(function() {
     items.forEach(function(item) {
         item.classList.remove('rotator__case_active');
     });
-    items[i % items.length].classList.add('rotator__case_active');
-    items[i % items.length].style.color = items[i % items.length].getAttribute('data-color');
-    //works only with this line
-    let color = items[i++ % items.length].getAttribute('data-color');
     
+    i+=1;
+    let j = items[i % items.length];
+    
+    j.classList.add('rotator__case_active');
+    j.style.color = j.getAttribute('data-color');
 }, 1000);
 
