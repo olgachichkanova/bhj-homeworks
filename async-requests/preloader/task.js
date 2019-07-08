@@ -19,7 +19,7 @@ const item = items.lastElementChild;
 
 
 let request = new XMLHttpRequest();
-request.open("GET", "https://netology-slow-rest.herokuapp.com");
+request.open("GET", "https://netology-slow-rest.herokuapp.com", true);
 request.send();
 
 console.log(request.readyState);

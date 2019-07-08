@@ -10,17 +10,18 @@ let input = document.getElementById('chat-widget__input');
 input.addEventListener('keydown', (e) => {
     if (e.keyCode == 13) {
         if (input.value.length > 0) {
-            const messages = document.querySelector( '.chat-widget__messages' );
+            const inputMessage = document.querySelector( '.chat-widget__messages' );
             
-            messages.innerHTML += `
+            inputMessage.innerHTML += `
             <div class="message message_client">
                 <div class="message__time"></div>
                 <div class="message__text">
                 </div>
             </div>
             `;
+
             let message_text = document.querySelector('.message__text');
-            message_text.innerHTML = input.value;
+            message_text.innerHTML = 'input.value';
             
             let message_time = document.querySelector('.message__time');
             message_time.innerHTML = time;
@@ -28,3 +29,17 @@ input.addEventListener('keydown', (e) => {
     }
 })
 
+const outputMessage = document.querySelector( '.chat-widget__messages' );
+outputMessage.innerHTML += `
+            <div class="message">
+                <div class="message__time"></div>
+                <div class="message__text">
+                </div>
+            </div>
+            `;
+            
+            let message_text = document.querySelector('.message__text');
+            message_text.innerHTML = 'input.value';
+            
+            let message_time = document.querySelector('.message__time');
+            message_time.innerHTML = time;
