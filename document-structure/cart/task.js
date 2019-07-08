@@ -7,10 +7,25 @@ const cart = document.querySelector('.cart__products');
 const product = document.querySelectorAll('.product');
 const img = document.querySelectorAll('img');
 
-let item = `<div class="cart__product" data-id="1">
-<img class="cart__product-image" src="image.png">
-<div class="cart__product-count">20</div>
-</div>`;
+const item = (itemId, itemImg, itemCount) => {
+    const cartProduct = document.createElement('div');
+    cartProduct.classList = 'cart__product';
+    cartProduct.setAttribute('data-id', itemId);
+
+    const cartImage = document.createElement('img');
+    cartImage.classList = 'cart__product-image';
+    cartImage.setAttribute('src', itemImg);
+
+    const productCount = document.createElement('div');
+    productCount.classList = 'cart__product-count';
+    productCount.innerText = itemCount;
+
+    cartProduct.appendChild(cartImage);
+    cartProduct.appendChild(productCount);
+
+
+    return cartProduct.outerHTML;
+}
 
 //decrease quantity
 for (let i = 0; i < dec.length; i++) {
@@ -29,32 +44,28 @@ for (let i = 0; i < inc.length; i++) {
 }
 
 for (let i = 0; i < add.length; i++) {
-    let items = [];
+
     add[i].addEventListener('click', () => {
-    
-        if (items.length == 0) {
-            cart.insertAdjacentHTML("afterbegin", item);
-            items.push(item);
 
-            const cartProduct = document.querySelector('.cart__product');
-            cartProduct.setAttribute('data-id', product[i].getAttribute('data-id'));
+        const itemId = product[i].getAttribute('data-id');
+        const itemImg = img[i].getAttribute('src');
+        const itemCount = value[i].innerText;
 
-            const cartImg = document.querySelector('img');
-            cartImg.setAttribute('src', img[i].getAttribute('src'));
-
-            const cartQuantity = document.querySelector('.cart__product-count');
-            cartQuantity.innerText = value[i].innerText;
-
-            console.log(items);
-
+        const cartProduct = document.querySelectorAll('.cart__product');
+        const listId = [];
+        cartProduct.forEach((i) => {
+            
+            listId.push(i.getAttribute('data-id'));
+            
+            return listId;
+        });
+        
+        if (!(listId.includes(itemId))) {
+            cart.insertAdjacentHTML("afterbegin", item(itemId, itemImg, itemCount));
         } else {
-            if (product[i].getAttribute('data-id') == cartProduct.getAttribute('data-id')) {
-                console.log('test');
-            }
-        };
+            
+        }
+        
         
     });
-
-    
 }
-
