@@ -7,39 +7,39 @@ chatOpen.onclick = function() {
 
 let input = document.getElementById('chat-widget__input');
 
+const respondList = ['Добрый день! Мы сегодня не работаем!', 'Что Вы себе позволяете?', 'У нас нет времени на Ваш запрос', 'Для связи с оператором увеличте стоимость заказа'];
+
+
+const messageTemplate = ((text, time, className) => {
+    const message = document.createElement('div');
+    message.classList = 'message';
+    message.classList.add(className);
+
+    const messageTime = document.createElement('div');
+    messageTime.classList = 'message__time';
+    messageTime.innerText = time;
+
+    const messageText = document.createElement('div');
+    messageText.classList = 'message__text';
+    messageText.innerText = text;
+
+    message.appendChild(messageTime);
+    message.appendChild(messageText);
+
+    return message.outerHTML;
+});
 input.addEventListener('keydown', (e) => {
     if (e.keyCode == 13) {
         if (input.value.length > 0) {
-            const inputMessage = document.querySelector( '.chat-widget__messages' );
+            const message = document.querySelector( '.chat-widget__messages' );
             
-            inputMessage.innerHTML += `
-            <div class="message message_client">
-                <div class="message__time"></div>
-                <div class="message__text">
-                </div>
-            </div>
-            `;
+            message.insertAdjacentHTML('afterbegin', messageTemplate(input.value, time, 'message_client'));
+            input.value = '';
 
-            let message_text = document.querySelector('.message__text');
-            message_text.innerHTML = 'input.value';
-            
-            let message_time = document.querySelector('.message__time');
-            message_time.innerHTML = time;
+            let outputMessage = respondList[Math.floor(Math.random() * respondList.length)];
+
+            message.insertAdjacentHTML('afterbegin', messageTemplate(outputMessage, time));
         }
     }
-})
+});
 
-const outputMessage = document.querySelector( '.chat-widget__messages' );
-outputMessage.innerHTML += `
-            <div class="message">
-                <div class="message__time"></div>
-                <div class="message__text">
-                </div>
-            </div>
-            `;
-            
-            let message_text = document.querySelector('.message__text');
-            message_text.innerHTML = 'input.value';
-            
-            let message_time = document.querySelector('.message__time');
-            message_time.innerHTML = time;
