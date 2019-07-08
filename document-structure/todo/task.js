@@ -13,7 +13,7 @@ const task = function(taskText) {
   const remove = document.createElement('a');
   remove.href = '#';
   remove.classList = 'task__remove';
-  remove.innerText = '&times;';
+  remove.innerHTML = '&times;';
 
   task.appendChild(taskTitle);
   task.appendChild(remove);
