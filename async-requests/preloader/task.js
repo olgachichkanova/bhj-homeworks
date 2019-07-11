@@ -25,6 +25,8 @@ let addItem = ((code, value) => {
 });
 
 
+
+
 let request = new XMLHttpRequest();
 request.addEventListener('load', onLoad);
 request.open('GET', 'https://netology-slow-rest.herokuapp.com', true);
@@ -42,9 +44,11 @@ function foo(data) {
     let valuteList = data.response.Valute;
     
     for (let k in valuteList) {
-        items.insertAdjacentHTML('afterbegin', addItem(valuteList[k].CharCode, valuteList[k].Value));
-        
-        loader.classList.remove('loader_active');
+        addItem(valuteList[k].CharCode, valuteList[k].Value);
     }
+
+    
+
+    loader.classList.remove('loader_active');
 }
 
