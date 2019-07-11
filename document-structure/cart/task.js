@@ -51,21 +51,13 @@ for (let i = 0; i < add.length; i++) {
         const itemImg = img[i].getAttribute('src');
         const itemCount = value[i].innerText;
 
-        const cartProduct = document.querySelectorAll('.cart__product');
-        const listId = [];
-        cartProduct.forEach((i) => {
-            
-            listId.push(i.getAttribute('data-id'));
-            
-            return listId;
-        });
-        
-        if (!(listId.includes(itemId))) {
+        const cartProduct = Array.from(document.querySelectorAll('.cart__product'));
+       
+        if (!(cartProduct.some(item => itemId === item.dataset.id))) {
             cart.insertAdjacentHTML("afterbegin", item(itemId, itemImg, itemCount));
         } else {
-            
-        }
-        
-        
+            let cartItem = cartProduct.filter(item => itemId === item.dataset.id);
+            cartItem[0].querySelector('.cart__product-count').innerText = Number(cartItem[0].querySelector('.cart__product-count').innerText) + Number(itemCount);
+        } 
     });
 }
