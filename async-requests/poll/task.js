@@ -1,5 +1,3 @@
-const poll = document.querySelector('.poll');
-
 const pollTitle = document.getElementById('poll__title');
 
 const pollAnswers = document.getElementById('poll__answers');
@@ -27,42 +25,42 @@ function onLoad() {
     }
 }
 //download poll
-function foo(data) {
-    console.log(data);
-    let title = data.data.title;
+function foo(text) {
+    console.log(text);
+    let title = text.data.title;
 
-    let answers = data.data.answers;
+    let answers = text.data.answers;
 
     pollTitle.innerText = title;
     
     for(let item of answers) {
 
             pollAnswers.insertAdjacentHTML('afterbegin', createAnswers(item));
-            addEventListener('click', () => {
-                alert('Спасибо, Ваш голос засчитан');
+        };
+    const pollAnswer = pollAnswers.getElementsByClassName('poll__answer');
 
-            })
+    for (let button of pollAnswer) {
+        button.addEventListener('click', e => {
+            e.preventDefault();
+            alert('Спасибо, ваш голос засчитан');
+        })
+    }
 
-        }
+     let requestPost = new XMLHttpRequest();
+            requestPost.addEventListener('load', () => {
+                if (requestPost.readyState === 4 && requestPost.status === 200) {
+                fooPost(JSON.parse(requestPost.responseText));
+                } else if (requestPost.readyState !== 4 && requestPost.status !== 200) {
+                console.log(`Ответ ${requestPost.status}: ${requestPost.statusText}`);
+                }
+            });
+            requestPost.open('POST', 'https://netology-slow-rest.herokuapp.com/poll.php', true);
+            requestPost.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            requestPost.send('vote=data.id&answer=item');
 
-    //  let requestPost = new XMLHttpRequest();
-    //         requestPost.addEventListener('load', onLoad);
-    //         requestPost.open('POST', 'https://netology-slow-rest.herokuapp.com/poll.php', true);
-    //         requestPost.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    //         requestPost.send('vote=data.id&answer=this.index');
 
-    //         function onLoad() {
-    //             if (requestPost.readyState === 4 && requestPost.status === 200) {
-    //             fooPost(JSON.parse(requestPost.responseText));
-    //             } else if (requestPost.readyState !== 4 && requestPost.status !== 200) {
-    //             console.log(`Ответ ${requestPost.status}: ${requestPost.statusText}`);
-    //             }
-    //         }
-
-    //         function fooPost(dataPost) {
-    //             console.log(dataPost.stat);
-    //         }
-    
-    
-}
-
+            function fooPost(dataPost) {
+                let answers = dataPost;
+                console.log(answers);
+            }
+};

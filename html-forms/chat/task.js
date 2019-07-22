@@ -32,13 +32,13 @@ input.addEventListener('keydown', (e) => {
     if (e.keyCode == 13) {
         if (input.value.length > 0) {
             const message = document.querySelector( '.chat-widget__messages' );
-            
-            message.insertAdjacentHTML('afterbegin', messageTemplate(input.value, time, 'message_client'));
-            input.value = '';
 
             let outputMessage = respondList[Math.floor(Math.random() * respondList.length)];
 
-            message.insertAdjacentHTML('afterbegin', messageTemplate(outputMessage, time));
+            message.insertAdjacentHTML('afterend', messageTemplate(input.value, time, 'message_client'));
+            input.value = '';
+
+            message.insertAdjacentHTML('afterend', messageTemplate(outputMessage, time));
         }
     }
 });
