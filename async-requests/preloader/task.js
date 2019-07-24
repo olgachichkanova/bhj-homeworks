@@ -3,7 +3,8 @@ const loader = document.getElementById('loader');
 
 let addItem = ((code, value) => {
     
-    const item = items.lastElementChild;
+    let template = document.createElement('div');
+    template.classList.add('item');
 
     const itemCode = document.createElement('div');
     itemCode.className = 'item__code';
@@ -17,15 +18,12 @@ let addItem = ((code, value) => {
     itemCurrency.className = 'item__currency';
     itemCurrency.innerHTML = 'руб';
 
-    item.appendChild(itemCode);
-    item.appendChild(itemValue);
-    item.appendChild(itemCurrency);
+    template.appendChild(itemCode);
+    template.appendChild(itemValue);
+    template.appendChild(itemCurrency);
 
-    return item.outerHTML;
+    return template;
 });
-
-
-
 
 let request = new XMLHttpRequest();
 request.addEventListener('load', onLoad);
@@ -44,11 +42,8 @@ function foo(data) {
     let valuteList = data.response.Valute;
     
     for (let k in valuteList) {
-        addItem(valuteList[k].CharCode, valuteList[k].Value);
-    }
-
-    
-
+        items.appendChild(addItem(valuteList[k].CharCode, valuteList[k].Value));
+    };
     loader.classList.remove('loader_active');
 }
 
