@@ -1,10 +1,6 @@
 const popup = document.querySelector('.modal');
 const button = document.querySelector('.modal__close');
 
-const setCookie = (cname, element) => {
-    document.cookie = cname + '=' + element + ':path=/';
-}
-
 const getCookie = (name) => {
     const value = ';' + document.cookie;
     
