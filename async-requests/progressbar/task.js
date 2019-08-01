@@ -4,18 +4,15 @@ let formData = new FormData(form);
 
 
 function eventHandler(event) {
-    let loaded = event.loaded;
-    let total = event.total;
-    progressBar.setAttribute('value', loaded/total);
-    return false;
+    progressBar.value += event.loaded / 10000000000;
 };
 
-function addListeners (xhr, event) {
-    xhr.addEventListener('loadstart', eventHandler(event));
-    xhr.addEventListener('load', eventHandler(event));
-    xhr.addEventListener('loadend', eventHandler(event));
-    xhr.addEventListener('progress', eventHandler(event));
-    xhr.addEventListener('error', eventHandler(event));
+function addListeners (xhr) {
+    xhr.addEventListener('loadstart', eventHandler);
+    xhr.addEventListener('load', eventHandler);
+    xhr.addEventListener('loadend', eventHandler);
+    xhr.addEventListener('progress', eventHandler);
+    xhr.addEventListener('error', eventHandler);
 };
 
 function upload(formData) {
