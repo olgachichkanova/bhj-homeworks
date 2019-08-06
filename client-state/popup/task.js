@@ -7,7 +7,7 @@ button.addEventListener('click', () => {
 });
 
 const checkCookie = () => {
-    if (document.cookie.indexOf() < 0) {
+    if (document.cookie.indexOf('modal=true') < 0) {
         popup.classList.add('modal_active');
     } ;
 };
